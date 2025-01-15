@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Anton\\UnrealEngineCourse\\OtusThirdPerson\\Source\\OtusThirdPerson\\OtusThirdPerson.Build.cs",
+		"D:\\Anton\\UnrealEngineCourse\\OtusThirdPerson\\Source\\OtusThirdPerson.Target.cs",
+		"D:\\Anton\\UnrealEngineCourse\\OtusThirdPerson\\Source\\OtusThirdPersonEditor.Target.cs"
+	],
+	"EngineVersion": "5.5.1"
+}

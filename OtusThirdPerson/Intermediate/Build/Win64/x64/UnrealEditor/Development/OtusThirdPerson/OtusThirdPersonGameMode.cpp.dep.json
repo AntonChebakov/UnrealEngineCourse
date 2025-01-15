@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\anton\\unrealenginecourse\\otusthirdperson\\source\\otusthirdperson\\otusthirdpersongamemode.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\anton\\unrealenginecourse\\otusthirdperson\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\otusthirdperson\\definitions.otusthirdperson.h",
+            "d:\\anton\\unrealenginecourse\\otusthirdperson\\source\\otusthirdperson\\otusthirdpersongamemode.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "d:\\anton\\unrealenginecourse\\otusthirdperson\\intermediate\\build\\win64\\unrealeditor\\inc\\otusthirdperson\\uht\\otusthirdpersongamemode.generated.h",
+            "d:\\anton\\unrealenginecourse\\otusthirdperson\\source\\otusthirdperson\\otusthirdpersoncharacter.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\net\\core\\public\\net\\core\\nettoken\\nettokenexportcontext.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "d:\\unrealengine\\unrealengine\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "d:\\unrealengine\\unrealengine\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "d:\\anton\\unrealenginecourse\\otusthirdperson\\intermediate\\build\\win64\\unrealeditor\\inc\\otusthirdperson\\uht\\otusthirdpersoncharacter.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

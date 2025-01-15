@@ -1,0 +1,22 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{77550E46-4FCD-C582-A06D-B380FAB49E1B}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "OtusThirdPerson",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	]
+}
