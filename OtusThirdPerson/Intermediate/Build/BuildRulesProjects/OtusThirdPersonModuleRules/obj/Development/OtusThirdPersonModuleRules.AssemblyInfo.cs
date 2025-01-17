@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OtusThirdPersonModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c72fc0523ebba73433d807a253630bf5aa8945dc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81ea3131ecd32afa741859d2182aabe945550163")]
 [assembly: System.Reflection.AssemblyProductAttribute("OtusThirdPersonModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OtusThirdPersonModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

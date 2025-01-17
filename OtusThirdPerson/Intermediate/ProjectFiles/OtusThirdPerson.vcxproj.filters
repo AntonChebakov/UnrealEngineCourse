@@ -53,5 +53,17 @@
     <ClCompile Include="..\..\Source\OtusThirdPerson\OtusThirdPersonGameMode.h">
       <Filter>Source\OtusThirdPerson</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\OtusThirdPerson\TestActor.cpp">
+      <Filter>Source\OtusThirdPerson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\OtusThirdPerson\TestActor.h">
+      <Filter>Source\OtusThirdPerson</Filter>
+    </ClCompile>
+    <Filter Include="Source\OtusThirdPerson\Test">
+      <UniqueIdentifier>{AC1784FD-B1A0-3671-B312-2ACB16027ABB}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\OtusThirdPerson\Test\TestActorLocation.cpp">
+      <Filter>Source\OtusThirdPerson\Test</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
