@@ -10,7 +10,6 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FTestActorLocation, "OtusThirdPerson.Test.TestA
 
 bool FTestActorLocation::RunTest(const FString& Parameters)
 {
-#if WITH_EDITOR
     UWorld* World = GEditor->GetEditorWorldContext().World();
 
     if (!World)
@@ -46,10 +45,6 @@ bool FTestActorLocation::RunTest(const FString& Parameters)
     AnotherActor->Destroy();
 
     return true;
-#else 
-    AddError(TEXT("Run in editor."))
-    return false;
-#endif
 }
 
 
