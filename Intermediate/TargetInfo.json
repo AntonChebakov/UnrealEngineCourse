@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "OtusThirdPerson",
+			"Path": "..\\Source\\OtusThirdPerson.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "OtusThirdPersonEditor",
+			"Path": "..\\Source\\OtusThirdPersonEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
