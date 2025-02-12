@@ -64,13 +64,14 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
+	
+	UPROPERTY(BlueprintReadWrite, Category = Movement)
+	float Input_MoveForward;
+
+	UPROPERTY(BlueprintReadWrite, Category = Movement)
+	float Input_MoveRight;
+
 	/** Follow camera */
-	UPROPERTY(BlueprintReadOnly, Category = Movement)
-	float input_MoveForward;
-
-	UPROPERTY(BlueprintReadOnly, Category = Movement)
-	float input_MoveRight;
-
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
