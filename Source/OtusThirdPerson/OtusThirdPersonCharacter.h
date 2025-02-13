@@ -71,6 +71,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = Movement)
 	float Input_MoveRight;
 
+	UPROPERTY(BlueprintReadWrite, Category = Crouch)
+	bool Input_Crouch;
+
 	/** Follow camera */
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
