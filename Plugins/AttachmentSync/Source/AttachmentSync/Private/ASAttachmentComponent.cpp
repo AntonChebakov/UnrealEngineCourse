@@ -52,6 +52,31 @@ void UASAttachmentComponent::ChangeOtherByGameplayTag(FGameplayTag NewOther)
 void UASAttachmentComponent::OnLoad(TSoftClassPtr<AASAttachment> AttachmentRef, FGameplayTag AttachmentTag,
 	ETypeAttachment AttachmentType)
 {
+	if (AttachmentRef.IsValid())
+	{
+		const auto* AttachmentActor = Cast<AASAttachment>(AttachmentRef->GetDefaultObject());
+		ensure(AttachmentActor);
+		switch (AttachmentType)
+		{
+		case ETypeAttachment::Clip:
+			if (AttachmentActor->GetAttachmentInfo().GameplayTag.MatchesAnyExact(AttachmentTag))
+			{
+				if (EquippedClip)
+				{
+					OnAttachmentRemoved.Broadcast(EquippedClip, AttachmentTag, AttachmentType);
+				}
+			}
+			break;
+		case ETypeAttachment::Muzzle:
+			break;
+		case ETypeAttachment::Grip:
+			break;
+		case ETypeAttachment::Sight:
+			break;
+		case ETypeAttachment::Other:
+			break;
+		}
+	}
 }
 
 void UASAttachmentComponent::OnLoadByKey(TSoftClassPtr<AASAttachment>* AttachmentPtr, ETypeAttachment AttachmentType)
