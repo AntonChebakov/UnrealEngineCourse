@@ -1,6 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
@@ -11,23 +9,23 @@
 UENUM(BlueprintType)
 enum class ETypeAttachment : uint8
 {
-	Clip	 UMETA(DisplayName = "Clip"),
-	Muzzle	 UMETA(DisplayName = "Muzzle"),
-	Grip	 UMETA(DisplayName = "Grip"),
-	Sight	 UMETA(DisplayName = "Sight"),
-	Other	 UMETA(DisplayName = "Other"),
+	Clip	UMETA(DisplayName = "Clip"),
+	Muzzle  UMETA(DisplayName = "Muzzle"),
+	Grip	UMETA(DisplayName = "Grip"),
+	Sight	UMETA(DisplayName = "Sight"),
+	Other	UMETA(DisplayName = "Other")
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttachmentAdded, FAttachmentInfo, AttachmentInfo, FGameplayTag, AttachmentGameplayTag,
-	ETypeAttachment, AttachmentTypr);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttachmentRemoved, FAttachmentInfo, AttachmentInfo, FGameplayTag, AttachmentGameplayTag,
-	ETypeAttachment, AttachmentTypr);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttachmentAdded, FAttachmentInfo, AttachmentInfo, FGameplayTag, 
+AttachmentGameplayTag, ETypeAttachment, AttachmentType);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnAttachmentRemoved, FAttachmentInfo, AttachmentInfo, FGameplayTag, 
+AttachmentGameplayTag, ETypeAttachment, AttachmentType);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class ATTACHMENTSYNC_API UASAttachmentComponent : public UActorComponent
 {
 	GENERATED_BODY()
-	
+
 	UPROPERTY()
 	TObjectPtr<class USkeletalMeshComponent> WeaponMesh;
 	FStreamableManager Manager;
@@ -43,28 +41,30 @@ class ATTACHMENTSYNC_API UASAttachmentComponent : public UActorComponent
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "AttachmentName", meta = (AllowPrivateAccess = "true"))
 	FName OtherSocketName;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AASAttachment> EquippedClip;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AASAttachment> EquippedMuzzle;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AASAttachment> EquippedGrip;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AASAttachment> EquippedSight;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<AASAttachment> EquippedOther;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true", EditFixedSize=true))
 	TMap<FName, TSoftClassPtr<AASAttachment>> ClipAttachments;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true", EditFixedSize=true))
 	TMap<FName, TSoftClassPtr<AASAttachment>> MuzzleAttachments;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true", EditFixedSize=true))
 	TMap<FName, TSoftClassPtr<AASAttachment>> GripAttachments;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true", EditFixedSize=true))
 	TMap<FName, TSoftClassPtr<AASAttachment>> SightAttachments;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, Category = "Attachment", meta = (AllowPrivateAccess = "true", EditFixedSize=true))
 	TMap<FName, TSoftClassPtr<AASAttachment>> OtherAttachments;
 
+	UFUNCTION(BlueprintCallable, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	void ChangeByGameplayTag(FGameplayTag NewTag, ETypeAttachment TypeAttachment);
 	UFUNCTION(BlueprintCallable, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	void ChangeClipByGameplayTag(FGameplayTag NewClip);
 	UFUNCTION(BlueprintCallable, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
@@ -75,10 +75,12 @@ class ATTACHMENTSYNC_API UASAttachmentComponent : public UActorComponent
 	void ChangeSightByGameplayTag(FGameplayTag NewSight);
 	UFUNCTION(BlueprintCallable, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
 	void ChangeOtherByGameplayTag(FGameplayTag NewOther);
+	UFUNCTION(BlueprintCallable, Category = "Attachment", meta = (AllowPrivateAccess = "true"))
+	void ChangeAttachmentByKey(FName AttachmentName, ETypeAttachment TypeAttachment);
 
-	void OnLoad(TSoftClassPtr<AASAttachment> AttachmentRef, FGameplayTag AttachmentTag, ETypeAttachment AttachmentType);
-	void OnLoadByKey(TSoftClassPtr<AASAttachment>* AttachmentPtr, ETypeAttachment AttachmentType);
-	
+	void OnLoad(TSoftClassPtr<AASAttachment> AttachmentRef, FGameplayTag AttachmentTag, ETypeAttachment TypeAttachment);
+	void OnLoadByKey(TSoftClassPtr<AASAttachment>* AttachmentPtr,ETypeAttachment TypeAttachment);
+
 	UPROPERTY(BlueprintAssignable)
 	FOnAttachmentAdded OnAttachmentAdded;
 	UPROPERTY(BlueprintAssignable)
@@ -87,13 +89,13 @@ class ATTACHMENTSYNC_API UASAttachmentComponent : public UActorComponent
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
 	FORCEINLINE AASAttachment* GetCurrentAttachmentClip() const { return EquippedClip; }
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
-	FORCEINLINE AASAttachment* GetCurrentMuzzle() const { return EquippedMuzzle; }
+	FORCEINLINE AASAttachment* GetCurrentAttachmentMuzzle() const { return EquippedMuzzle; }
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
-	FORCEINLINE AASAttachment* GetCurrentGrip() const { return EquippedGrip; }
+	FORCEINLINE AASAttachment* GetCurrentAttachmentGrip() const { return EquippedGrip; }
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
-	FORCEINLINE AASAttachment* GetCurrentSight() const { return EquippedSight; }
+	FORCEINLINE AASAttachment* GetCurrentAttachmentSight() const { return EquippedSight; }
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
-	FORCEINLINE AASAttachment* GetCurrentOther() const { return EquippedOther; }
+	FORCEINLINE AASAttachment* GetCurrentAttachmentOther() const { return EquippedOther; }
 
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
 	FORCEINLINE TMap<FName, TSoftClassPtr<AASAttachment>> GetAllCurrentAttachmentClip() const { return ClipAttachments; }
@@ -105,19 +107,21 @@ class ATTACHMENTSYNC_API UASAttachmentComponent : public UActorComponent
 	FORCEINLINE TMap<FName, TSoftClassPtr<AASAttachment>> GetAllCurrentAttachmentSight() const { return SightAttachments; }
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
 	FORCEINLINE TMap<FName, TSoftClassPtr<AASAttachment>> GetAllCurrentAttachmentOther() const { return OtherAttachments; }
-
+	
 	UFUNCTION(BlueprintCallable, Category = "Attachment")
 	void DestroyCurrentAttachment(ETypeAttachment TypeAttachment);
-	UFUNCTION(BlueprintCallable, Category = "Attachment")
-	AASAttachment* ChangeAttachment(FName Attachmentname, const TSoftClassPtr<AASAttachment>& AttachmentSoftRef) const;
 
+	AASAttachment* ChangeAttachment(FName AttachmentName, const TSoftClassPtr<AASAttachment>& AttachmentSoftRef) const;
+	TMap<FName, TSoftClassPtr<AASAttachment>>* GetAttachmentMapByType(ETypeAttachment TypeAttachment);
+	TObjectPtr<AASAttachment>* GetAttachmentByType(ETypeAttachment TypeAttachment);
+	
 public:
 	// Sets default values for this component's properties
 	UASAttachmentComponent();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 							   FActorComponentTickFunction* ThisTickFunction) override;
-	
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
